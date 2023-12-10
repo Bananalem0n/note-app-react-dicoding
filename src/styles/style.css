@@ -8,9 +8,12 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: #202124;
   color: white;
+  margin: 2.5rem;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
-input, textarea {
+.input-field, textarea {
   padding: 12px;
   margin: 12px 0;
   font-family: 'Inter', sans-serif;
@@ -20,12 +23,12 @@ input, textarea {
   border-radius: 4px;
 }
 
-input::placeholder, textarea::placeholder {
+.input-field::placeholder, textarea::placeholder {
   color: #aaa;
   font-weight: bold;
 }
 
-.note-app__header {
+.header {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,50 +36,49 @@ input::placeholder, textarea::placeholder {
   border-bottom: 1px solid #aaa;
 }
 
-.note-app__header h1 {
+.header h1 {
   margin: 8px 0;
   flex: 1;
   color: white;
 }
 
-
-.note-app__body {
+.body {
   max-width: 1000px;
   margin: 16px auto;
   padding: 12px;
 }
 
-.note-app__body h2 {
+.body h2 {
   font-weight: normal;
   margin: 16px 0;
 }
 
-.note-input {
+.input-container {
   margin: 0 auto;
   max-width: 500px;
   margin-bottom: 48px;
 }
 
-.note-input input, .note-input textarea {
+.input-container .input-field, .input-container textarea {
   display: block;
   width: 100%;
 }
 
-.note-input__title {
+.input-container__title {
   font-weight: bold;
 }
 
-.note-input__title__char-limit {
+.input-container__title__char-limit {
   font-size: 14px;
   text-align: right;
   color: #aaa;
 }
 
-.note-input__body {
+.input-container__body {
   min-height: 175px;
 }
 
-.note-input button {
+.input-container button {
   display: block;
   width: 100%;
   padding: 8px;
@@ -97,7 +99,7 @@ input::placeholder, textarea::placeholder {
   margin-bottom: 48px;
 }
 
-.notes-list__empty-message {
+.empty-message {
   text-align: center;
   color: #aaa;
 }
@@ -136,32 +138,35 @@ input::placeholder, textarea::placeholder {
   display: flex;
 }
 
-.note-item__delete-button,.note-item__archive-button {
+.button-group {
+  display: flex;
+  max-width: 300px;
+}
+
+.delete-button, .archive-button {
   display: block;
   width: 100%;
   background-color: transparent;
-  border: 0;
-  border-top: 1px solid #aaa;
   padding: 8px 0;
   font-family: 'Inter', sans-serif;
   font-weight: bold;
   cursor: pointer;
 }
 
-.note-item__delete-button {
+.delete-button {
   border-right: 1px solid #aaa;
   color: #ff5f52;
 }
 
-.note-item__archive-button {
+.archive-button {
   color: #fff263;
 }
 
-.note-item__archive-button:hover {
+.archive-button:hover {
   color: #c49000;
 }
 
-.note-item__delete-button:hover {
+.delete-button:hover {
   color: #b00020;
 }
 
@@ -176,7 +181,7 @@ input::placeholder, textarea::placeholder {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .note-search input {
+  .search-bar input {
     min-width: 400px;
   }
 }

@@ -1,0 +1,51 @@
+.card-collection {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.note-card {
+  flex: 0 1 305px;
+  display: flex;
+  flex-direction: column; /* Set to column layout */
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 20px 10px;
+  padding: 16px;
+  background-color: #333;
+  color: white;
+  height: auto;
+  min-height: 260px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  align-items: center; /* Center the content horizontally */
+  justify-content: center; /* Center the content vertically */
+}
+
+.note-title {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.note-body {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.note-date {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-bottom: 8px;
+  margin-top: auto;
+}
+
+.button-group {
+  margin-top: auto; /* Push the button group to the bottom */
+  width: 100%;
+}
+
+
+.card-collection h2 {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+}
