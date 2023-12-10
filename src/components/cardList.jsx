@@ -60,6 +60,9 @@ const CardList = () => {
   const nonArchivedNotes = filteredNotes.filter((note) => !note.archived);
   const archivedNotes = filteredNotes.filter((note) => note.archived);
 
+  const hasNonArchivedNotes = nonArchivedNotes.length > 0;
+  const hasArchivedNotes = archivedNotes.length > 0;
+
   return (
     <>
       <div className="title header">
@@ -83,25 +86,37 @@ const CardList = () => {
       </form>
 
       <div className="card-collection">
-        <h2>Non-Archived Notes</h2>
-        {nonArchivedNotes.map((item) => (
-          <Note
-            key={item.id}
-            note={item}
-            onDelete={deleteNote}
-            onToggleArchive={toggleArchive}
-          />
-        ))}
+        {hasNonArchivedNotes && (
+          <>
+            <h2>Non-Archived Notes</h2>
+            {nonArchivedNotes.map((item) => (
+              <Note
+                key={item.id}
+                note={item}
+                onDelete={deleteNote}
+                onToggleArchive={toggleArchive}
+              />
+            ))}
+          </>
+        )}
 
-        <h2>Archived Notes</h2>
-        {archivedNotes.map((item) => (
-          <Note
-            key={item.id}
-            note={item}
-            onDelete={deleteNote}
-            onToggleArchive={toggleArchive}
-          />
-        ))}
+        {hasArchivedNotes && (
+          <>
+            <h2>Archived Notes</h2>
+            {archivedNotes.map((item) => (
+              <Note
+                key={item.id}
+                note={item}
+                onDelete={deleteNote}
+                onToggleArchive={toggleArchive}
+              />
+            ))}
+          </>
+        )}
+
+        {!hasNonArchivedNotes && !hasArchivedNotes && (
+          <p>No notes available yet.</p>
+        )}
       </div>
     </>
   );
