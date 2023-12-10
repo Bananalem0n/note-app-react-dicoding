@@ -3,13 +3,16 @@ import { createRoot } from "react-dom/client";
 import "./styles/style.css";
 import { getInitialData, showFormattedDate } from "./utils";
 
-const Note = ({ note, onDelete }) => (
+const Note = ({ note, onDelete, onToggleArchive }) => (
   <div key={note.id}>
     <p>{note.id}</p>
     <h2>{note.title}</h2>
     <p>{note.body}</p>
     <p>Created At: {showFormattedDate(note.createdAt)}</p>
     <button onClick={() => onDelete(note.id)}>delete</button>
+    <button onClick={() => onToggleArchive(note.id)}>
+      {note.archived ? "Unarchive" : "Archive"}
+    </button>
     <hr />
   </div>
 );
@@ -22,6 +25,13 @@ const CardList = () => {
 
   const deleteNote = (id) => {
     const updatedNotes = notes.filter((val) => val.id !== id);
+    setNotes(updatedNotes);
+  };
+
+  const toggleArchive = (id) => {
+    const updatedNotes = notes.map((note) =>
+      note.id === id ? { ...note, archived: !note.archived } : note
+    );
     setNotes(updatedNotes);
   };
 
@@ -46,6 +56,9 @@ const CardList = () => {
 
   const filteredNotes = notes.filter(searchNote);
 
+  const nonArchivedNotes = filteredNotes.filter((note) => !note.archived);
+  const archivedNotes = filteredNotes.filter((note) => note.archived);
+
   return (
     <>
       <input
@@ -55,8 +68,24 @@ const CardList = () => {
         onChange={(e) => setSearchQuery(e.target.value)}
       />
 
-      {filteredNotes.map((item) => (
-        <Note key={item.id} note={item} onDelete={deleteNote} />
+      <h2>Non-Archived Notes</h2>
+      {nonArchivedNotes.map((item) => (
+        <Note
+          key={item.id}
+          note={item}
+          onDelete={deleteNote}
+          onToggleArchive={toggleArchive}
+        />
+      ))}
+
+      <h2>Archived Notes</h2>
+      {archivedNotes.map((item) => (
+        <Note
+          key={item.id}
+          note={item}
+          onDelete={deleteNote}
+          onToggleArchive={toggleArchive}
+        />
       ))}
 
       <form onSubmit={addNote}>
